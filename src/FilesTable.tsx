@@ -33,7 +33,8 @@ function formatFileSize(bytes: number) {
 const FileItem: React.FC<{
   file: FileItem;
   pushPath: (folder: string) => void;
-}> = ({ file, pushPath }) => {
+  onDelete: (file: FileItem) => void;
+}> = ({ file, pushPath, onDelete }) => {
   const fileExtension = file.name.split(".").pop()?.toUpperCase() ?? "";
 
   if (file.isEpub) {
@@ -58,6 +59,7 @@ const FileItem: React.FC<{
             //   false
             // )}
             title="Delete file"
+            onClick={() => onDelete(file)}
           >
             <img src={TrashSvgPath} width="20px" />
           </button>
@@ -77,6 +79,7 @@ const FileItem: React.FC<{
             // href="/files?path=%2Fsleep"
             // onClick={() => pushPath(file.name)}
             className="folder-link"
+            // onClick={() => onDelete(file)}
           >
             {file.name}
           </span>
@@ -89,6 +92,7 @@ const FileItem: React.FC<{
           <button
             onClick={(e) => {
               e.stopPropagation();
+              onDelete(file);
             }}
             className="delete-btn"
             // onClick={openDeleteModal("sleep", "/sleep", true)}
@@ -122,6 +126,7 @@ const FileItem: React.FC<{
           <button
             className="delete-btn"
             // onclick="openDeleteModal('Unknown-1.bmp', '/Wallpapers/Unknown-1.bmp', false)"
+            onClick={() => onDelete(file)}
             title="Delete file"
           >
             <img src={TrashSvgPath} width="20px" />
@@ -135,7 +140,8 @@ const FileItem: React.FC<{
 const FilesContent: React.FC<{
   files: FileItem[];
   pushPath: (folder: string) => void;
-}> = ({ files, pushPath }) => {
+  onDelete: (file: FileItem) => void;
+}> = ({ files, pushPath, onDelete }) => {
   if (files.length === 0) {
     return <div className="no-files">This folder is empty</div>;
   }
@@ -149,7 +155,12 @@ const FilesContent: React.FC<{
         <th className="actions-col">Actions</th>
       </tr>
       {files.map((file) => (
-        <FileItem key={file.name} file={file} pushPath={pushPath} />
+        <FileItem
+          key={file.name}
+          file={file}
+          pushPath={pushPath}
+          onDelete={onDelete}
+        />
       ))}
     </table>
   );
@@ -158,7 +169,8 @@ const FilesContent: React.FC<{
 export const FilesTable: React.FC<{
   path: string[];
   setPath: (newPath: string[]) => void;
-}> = ({ setPath, path }) => {
+  onDelete: (file: FileItem) => void;
+}> = ({ setPath, path, onDelete }) => {
   const popPath = () => {
     setPath(path.slice(0, path.length - 1));
   };
@@ -236,6 +248,7 @@ export const FilesTable: React.FC<{
           </div>
         ) : (
           <FilesContent
+            onDelete={onDelete}
             files={sortedFiles}
             pushPath={(folder) => {
               setPath([...path, folder]);

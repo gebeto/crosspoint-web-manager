@@ -7,9 +7,11 @@ import { UploadModal } from "./UploadModal";
 import UploadSvgPath from "./icons/upload.png";
 import NewFolderSvgPath from "./icons/new-folder.png";
 import FolderSvgPath from "./icons/folder-2.svg";
+import type { FileItem } from "./queries";
 
 export function App() {
   const [path, setPath] = React.useState([""]);
+  const [deleteFile, setDeleteFile] = React.useState<FileItem | null>(null);
 
   const [newFolderModalOpen, setNewFolderModalOpen] = React.useState(false);
   const [uploadModalOpen, setUploadModalOpen] = React.useState(false);
@@ -42,7 +44,11 @@ export function App() {
         </div>
       </div>
 
-      <FilesTable path={path} setPath={setPath} />
+      <FilesTable
+        path={path}
+        setPath={setPath}
+        onDelete={(file: FileItem) => setDeleteFile(file)}
+      />
 
       <div className="card">
         <p style={{ textAlign: "center", color: "#95a5a6", margin: 0 }}>
@@ -65,7 +71,12 @@ export function App() {
         open={newFolderModalOpen}
         onClose={() => setNewFolderModalOpen(false)}
       />
-      <DeleteConfirmationModal />
+      <DeleteConfirmationModal
+        open={!!deleteFile}
+        onClose={() => setDeleteFile(null)}
+        filePath={deleteFile ? [...path, deleteFile.name] : []}
+        itemType="file"
+      />
     </>
   );
 }
