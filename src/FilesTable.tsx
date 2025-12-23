@@ -181,17 +181,11 @@ export const FilesTable: React.FC<{
       totalSize: 0,
     };
     files.forEach((file) => {
-      if (file.isDirectory) stats.folderCount++;
+      if (file.isDirectory) stats.foldersCount++;
       stats.totalSize += file.size;
     });
     return stats;
   }, [files]);
-
-  // document.getElementById(
-  //   "folder-summary"
-  // ).innerHTML = `${folderCount} folders, ${
-  //   files.length - folderCount
-  // } files, ${formatFileSize(totalSize)}`;
 
   return (
     <div className="card">

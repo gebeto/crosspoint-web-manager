@@ -1,11 +1,79 @@
+import React from "react";
 import { Modal } from "./Modal";
 
 export const UploadModal: React.FC<{
   open: boolean;
   onClose: () => void;
-}> = ({ open, onClose }) => {
-  const uploadFile = () => {};
-  const validateFile = () => {};
+  path: string[];
+}> = ({ open, onClose, path }) => {
+  const currentPath = path.join("/") || "/";
+  const fileInputRef = React.useRef<HTMLInputElement>(null);
+  const [uploadAllowed, setUploadAllowed] = React.useState(false);
+  const [uploadError, setUploadError] = React.useState<string | null>(null);
+  const [uploadStatus, setUploadStatus] = React.useState<
+    "initial" | "uploading" | "completed" | "error"
+  >("initial");
+  const [progress, setProgress] = React.useState(0);
+
+  const validateFile = () => {
+    const fileInput = fileInputRef.current;
+    if (!fileInput) return;
+
+    // const uploadBtn = document.getElementById("uploadBtn");
+    const file = fileInput.files?.[0];
+    // uploadBtn.disabled = !file;
+    setUploadAllowed(!!file);
+  };
+
+  const uploadFile = () => {
+    const fileInput = fileInputRef.current;
+    if (!fileInput) return;
+
+    const file = fileInput.files?.[0];
+
+    if (!file) {
+      alert("Please select a file first!");
+      return;
+    }
+
+    const formData = new FormData();
+    formData.append("file", file);
+
+    setUploadAllowed(false);
+
+    const xhr = new XMLHttpRequest();
+    // Include path as query parameter since multipart form data doesn't make
+    // form fields available until after file upload completes
+    xhr.open("POST", "/upload?path=" + encodeURIComponent(currentPath), true);
+
+    xhr.upload.onprogress = function (e) {
+      if (e.lengthComputable) {
+        const percent = Math.round((e.loaded / e.total) * 100);
+        setProgress(percent);
+      }
+    };
+
+    xhr.onload = function () {
+      if (xhr.status === 200) {
+        setUploadStatus("completed");
+        // progressText.textContent = "Upload complete!";
+        setTimeout(function () {
+          window.location.reload();
+        }, 1000);
+      } else {
+        setUploadStatus("error");
+        setUploadError("Upload failed: " + xhr.responseText);
+        setUploadAllowed(true);
+      }
+    };
+
+    xhr.onerror = function () {
+      setUploadError("Upload failed - network error");
+      setUploadAllowed(true);
+    };
+
+    xhr.send(formData);
+  };
 
   return (
     <Modal open={open} onClose={onClose} title="📤 Upload file">
@@ -13,20 +81,48 @@ export const UploadModal: React.FC<{
         <p className="file-info">
           Select a file to upload to <strong id="uploadPathDisplay"></strong>
         </p>
-        <input type="file" id="fileInput" onChange={validateFile} />
+        <input
+          ref={fileInputRef}
+          type="file"
+          id="fileInput"
+          onChange={validateFile}
+        />
         <button
           id="uploadBtn"
           className="upload-btn"
           onClick={uploadFile}
-          disabled
+          disabled={!uploadAllowed}
         >
           Upload
         </button>
-        <div id="progress-container">
+        <div
+          id="progress-container"
+          style={{ display: uploadStatus === "initial" ? undefined : "block" }}
+        >
           <div id="progress-bar">
-            <div id="progress-fill"></div>
+            <div
+              id="progress-fill"
+              style={{
+                width: progress + "%",
+                backgroundColor:
+                  {
+                    error: "#e74c3c",
+                    initial: undefined,
+                    uploading: undefined,
+                    completed: undefined,
+                  }[uploadStatus] || undefined,
+              }}
+            />
           </div>
-          <div id="progress-text"></div>
+          {uploadStatus === "uploading" && (
+            <div id="progress-text">Uploading: {progress}%</div>
+          )}
+          {uploadStatus === "completed" && (
+            <div id="progress-text">Upload complete!</div>
+          )}
+          {uploadStatus === "error" && (
+            <div id="progress-text">{uploadError}</div>
+          )}
         </div>
       </div>
     </Modal>

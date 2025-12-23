@@ -59,6 +59,7 @@ export function App() {
       <UploadModal
         open={uploadModalOpen}
         onClose={() => setUploadModalOpen(false)}
+        path={path}
       />
       <NewFolderModal
         open={newFolderModalOpen}
