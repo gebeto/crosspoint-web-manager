@@ -9,6 +9,27 @@ import EpubSvgPath from "./icons/epub.png";
 import TrashSvgPath from "./icons/trash.svg";
 import HomeSvgPath from "./icons/home.svg";
 
+// function escapeHtml(unsafe: string) {
+//   return unsafe
+//     .replaceAll("&", "&amp;")
+//     .replaceAll("<", "&lt;")
+//     .replaceAll(">", "&gt;")
+//     .replaceAll('"', "&quot;")
+//     .replaceAll("'", "&#039;");
+// }
+
+function formatFileSize(bytes: number) {
+  if (bytes === 0) return "0 B";
+  const k = 1024;
+  const sizes = ["B", "KB", "MB", "GB", "TB", "PB", "EB", "ZB", "YB"];
+  const i = Math.floor(Math.log(bytes) / Math.log(k));
+  return (
+    parseFloat((bytes / Math.pow(k, i)).toFixed(2)).toLocaleString() +
+    " " +
+    sizes[i]
+  );
+}
+
 const FileItem: React.FC<{
   file: FileItem;
   pushPath: (folder: string) => void;
@@ -27,7 +48,7 @@ const FileItem: React.FC<{
         <td>
           <span className="badge epub-badge">EPUB</span>
         </td>
-        <td>2.91 MB</td>
+        <td>{formatFileSize(file.size)}</td>
         <td className="actions-col">
           <button
             className="delete-btn"
@@ -96,7 +117,7 @@ const FileItem: React.FC<{
         <td>
           <span className="badge">{fileExtension}</span>
         </td>
-        <td>1.1 MB</td>
+        <td>{formatFileSize(file.size)}</td>
         <td className="actions-col">
           <button
             className="delete-btn"

@@ -10,8 +10,12 @@ import FolderSvgPath from "./icons/folder-2.svg";
 
 export function App() {
   const [path, setPath] = React.useState([""]);
-  const openUploadModal = () => {};
-  const openFolderModal = () => {};
+
+  const [newFolderModalOpen, setNewFolderModalOpen] = React.useState(false);
+  const [uploadModalOpen, setUploadModalOpen] = React.useState(false);
+
+  const openUploadModal = () => setUploadModalOpen(true);
+  const openFolderModal = () => setNewFolderModalOpen(true);
 
   return (
     <>
@@ -52,8 +56,14 @@ export function App() {
         </p>
       </div>
 
-      <UploadModal />
-      <NewFolderModal />
+      <UploadModal
+        open={uploadModalOpen}
+        onClose={() => setUploadModalOpen(false)}
+      />
+      <NewFolderModal
+        open={newFolderModalOpen}
+        onClose={() => setNewFolderModalOpen(false)}
+      />
       <DeleteConfirmationModal />
     </>
   );
