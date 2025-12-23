@@ -175,6 +175,24 @@ export const FilesTable: React.FC<{
     });
   }, [files]);
 
+  const folderStats = React.useMemo(() => {
+    const stats = {
+      foldersCount: 0,
+      totalSize: 0,
+    };
+    files.forEach((file) => {
+      if (file.isDirectory) stats.folderCount++;
+      stats.totalSize += file.size;
+    });
+    return stats;
+  }, [files]);
+
+  // document.getElementById(
+  //   "folder-summary"
+  // ).innerHTML = `${folderCount} folders, ${
+  //   files.length - folderCount
+  // } files, ${formatFileSize(totalSize)}`;
+
   return (
     <div className="card">
       <div className="breadcrumb-inline" id="directory-breadcrumbs">
@@ -210,7 +228,11 @@ export const FilesTable: React.FC<{
 
       <div className="contents-header">
         <h2 className="contents-title">Contents</h2>
-        <span className="summary-inline" id="folder-summary"></span>
+        <span className="summary-inline" id="folder-summary">
+          {folderStats.foldersCount} folders,{" "}
+          {files.length - folderStats.foldersCount} files,{" "}
+          {formatFileSize(folderStats.totalSize)}
+        </span>
       </div>
 
       <div id="file-table">
