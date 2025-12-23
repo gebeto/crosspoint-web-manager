@@ -1,11 +1,14 @@
 import React from "react";
 import { Modal } from "./Modal";
+import { API_URL } from "./queries";
+import { useQueryClient } from "@tanstack/react-query";
 
 export const UploadModal: React.FC<{
   open: boolean;
   onClose: () => void;
   path: string[];
 }> = ({ open, onClose, path }) => {
+  const queryClient = useQueryClient();
   const currentPath = path.join("/") || "/";
   const fileInputRef = React.useRef<HTMLInputElement>(null);
   const [uploadAllowed, setUploadAllowed] = React.useState(false);
@@ -44,7 +47,11 @@ export const UploadModal: React.FC<{
     const xhr = new XMLHttpRequest();
     // Include path as query parameter since multipart form data doesn't make
     // form fields available until after file upload completes
-    xhr.open("POST", "/upload?path=" + encodeURIComponent(currentPath), true);
+    xhr.open(
+      "POST",
+      API_URL + "/upload?path=" + encodeURIComponent(currentPath),
+      true
+    );
 
     xhr.upload.onprogress = function (e) {
       if (e.lengthComputable) {
@@ -56,9 +63,9 @@ export const UploadModal: React.FC<{
     xhr.onload = function () {
       if (xhr.status === 200) {
         setUploadStatus("completed");
-        // progressText.textContent = "Upload complete!";
         setTimeout(function () {
-          window.location.reload();
+          queryClient.invalidateQueries({ queryKey: ["files"] });
+          onClose();
         }, 1000);
       } else {
         setUploadStatus("error");

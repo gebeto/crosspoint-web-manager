@@ -1,7 +1,7 @@
 import { useQuery } from "@tanstack/react-query";
 
 const url = new URL(window.location.href);
-const API_URL = url.searchParams.get("api_url") ?? null;
+export const API_URL = url.searchParams.get("api_url") ?? null;
 
 export type UnknownFile = {
   name: string;
