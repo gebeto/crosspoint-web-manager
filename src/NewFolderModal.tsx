@@ -7,10 +7,16 @@ export const NewFolderModal: React.FC<{
   open: boolean;
   onClose: () => void;
   path: string[];
-}> = ({ open, onClose, path }) => {
+}> = ({ open, onClose: _onClose, path }) => {
   const queryClient = useQueryClient();
   const currentPath = path.join("/") || "/";
   const inputRef = React.useRef<HTMLInputElement>(null);
+  const onClose = () => {
+    _onClose();
+    if (inputRef.current) {
+      inputRef.current.value = "";
+    }
+  };
   const createFolder = () => {
     if (!inputRef.current) return;
 
