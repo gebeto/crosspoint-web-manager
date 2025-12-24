@@ -1,7 +1,13 @@
 import { useQuery } from "@tanstack/react-query";
 
-const url = new URL(window.location.href);
-export const API_URL = url.searchParams.get("api_url") ?? null;
+const getApiUrl = () => {
+  const url = new URL(window.location.href);
+  if (url.protocol === "http:" && url.hostname !== "localhost") {
+    return "";
+  }
+  return url.searchParams.get("api_url") ?? null;
+};
+export const API_URL = getApiUrl();
 
 export type UnknownFile = {
   name: string;
@@ -35,7 +41,7 @@ export const useFilesList = (path: string) => {
     staleTime: 0,
     gcTime: 0,
     queryFn: async () => {
-      if (API_URL) {
+      if (API_URL !== null) {
         const response = await fetch(
           `${API_URL}/api/files?path=${encodeURIComponent(path)}`
         ).then((res) => res.json() as Promise<FileItem[]>);
