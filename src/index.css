@@ -1,9 +1,6 @@
 @font-face {
   font-family: "BlockKie Regular";
-  src: url("./fonts/BlockKie.eot?") format("eot"),
-    url("./fonts/BlockKie.woff") format("woff"),
-    url("./fonts/BlockKie.ttf") format("truetype"),
-    url("./fonts/BlockKie.svg#BlockKie") format("svg");
+  src: url("./fonts/BlockKie.woff?inline") format("woff");
   font-weight: normal;
   font-style: normal;
 }
