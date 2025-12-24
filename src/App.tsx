@@ -70,6 +70,7 @@ export function App() {
       <NewFolderModal
         open={newFolderModalOpen}
         onClose={() => setNewFolderModalOpen(false)}
+        path={path}
       />
       <DeleteConfirmationModal
         open={!!deleteFile}
