@@ -8,4 +8,12 @@ export default defineConfig({
     port: 3000,
   },
   plugins: [react()],
+  build: {
+    rolldownOptions: {
+      output: {
+        entryFileNames: "[name].js",
+        assetFileNames: "[name].[ext]",
+      },
+    },
+  },
 });
