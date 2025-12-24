@@ -62,22 +62,28 @@ export function App() {
         </p>
       </div>
 
-      <UploadModal
-        open={uploadModalOpen}
-        onClose={() => setUploadModalOpen(false)}
-        path={path}
-      />
-      <NewFolderModal
-        open={newFolderModalOpen}
-        onClose={() => setNewFolderModalOpen(false)}
-        path={path}
-      />
-      <DeleteConfirmationModal
-        open={!!deleteFile}
-        onClose={() => setDeleteFile(null)}
-        filePath={deleteFile ? [...path, deleteFile.name] : []}
-        itemType="file"
-      />
+      {uploadModalOpen && (
+        <UploadModal
+          open={uploadModalOpen}
+          onClose={() => setUploadModalOpen(false)}
+          path={path}
+        />
+      )}
+      {newFolderModalOpen && (
+        <NewFolderModal
+          open={newFolderModalOpen}
+          onClose={() => setNewFolderModalOpen(false)}
+          path={path}
+        />
+      )}
+      {!!deleteFile && (
+        <DeleteConfirmationModal
+          open={!!deleteFile}
+          onClose={() => setDeleteFile(null)}
+          filePath={deleteFile ? [...path, deleteFile.name] : []}
+          itemType="file"
+        />
+      )}
     </>
   );
 }

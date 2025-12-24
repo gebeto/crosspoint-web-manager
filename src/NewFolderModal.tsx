@@ -7,16 +7,10 @@ export const NewFolderModal: React.FC<{
   open: boolean;
   onClose: () => void;
   path: string[];
-}> = ({ open, onClose: _onClose, path }) => {
+}> = ({ open, onClose, path }) => {
   const queryClient = useQueryClient();
   const currentPath = path.join("/") || "/";
   const inputRef = React.useRef<HTMLInputElement>(null);
-  const onClose = () => {
-    _onClose();
-    if (inputRef.current) {
-      inputRef.current.value = "";
-    }
-  };
   const createFolder = () => {
     if (!inputRef.current) return;
 
@@ -67,6 +61,7 @@ export const NewFolderModal: React.FC<{
         </p>
         <input
           ref={inputRef}
+          autoFocus
           type="text"
           id="folderName"
           className="folder-input"
