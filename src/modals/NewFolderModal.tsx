@@ -1,7 +1,7 @@
 import React from "react";
-import { Modal } from "./Modal";
 import { useQueryClient } from "@tanstack/react-query";
-import { API_URL } from "./queries";
+import { Modal } from "../components/Modal";
+import { API_URL } from "../queries/types";
 
 export const NewFolderModal: React.FC<{
   open: boolean;

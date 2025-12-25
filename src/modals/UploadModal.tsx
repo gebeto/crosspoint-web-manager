@@ -1,7 +1,7 @@
 import React from "react";
-import { Modal } from "./Modal";
-import { API_URL } from "./queries";
 import { useQueryClient } from "@tanstack/react-query";
+import { Modal } from "../components/Modal";
+import { API_URL } from "../queries/types";
 
 export const UploadModal: React.FC<{
   open: boolean;

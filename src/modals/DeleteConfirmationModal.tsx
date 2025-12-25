@@ -1,6 +1,7 @@
+import React from "react";
 import { useQueryClient } from "@tanstack/react-query";
-import { Modal } from "./Modal";
-import { API_URL } from "./queries";
+import { Modal } from "../components/Modal";
+import { API_URL } from "../queries/types";
 
 export const DeleteConfirmationModal: React.FC<{
   open: boolean;

@@ -1,6 +1,6 @@
 import React from "react";
-import { useFilesList } from "./queries";
-import type { FileItem } from "./queries";
+import { useFilesList } from "./queries/filesList.query";
+import type { FileItem } from "./queries/filesList.query";
 
 import UnknownFileSvgPath from "./icons/unknown-file.svg";
 import FolderSvgPath from "./icons/folder-2.svg";

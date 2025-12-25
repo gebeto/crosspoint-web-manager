@@ -227,7 +227,10 @@ h2 {
 .no-files {
   text-align: center;
   color: #95a5a6;
-  padding: 40px;
+  height: 96px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   font-style: italic;
 }
 .message {
@@ -372,7 +375,11 @@ h2 {
   display: flex;
   justify-content: center;
   align-items: center;
-  margin: 20px 0;
+  /* margin: 20px 0; */
+  height: 96px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 .loader {
   width: 48px;

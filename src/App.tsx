@@ -1,13 +1,13 @@
 import React from "react";
-import { DeleteConfirmationModal } from "./DeleteConfirmationModal";
+import { DeleteConfirmationModal } from "./modals/DeleteConfirmationModal";
 import { FilesTable } from "./FilesTable";
-import { NewFolderModal } from "./NewFolderModal";
-import { UploadModal } from "./UploadModal";
+import { NewFolderModal } from "./modals/NewFolderModal";
+import { UploadModal } from "./modals/UploadModal";
 
 import UploadSvgPath from "./icons/upload.png";
 import NewFolderSvgPath from "./icons/new-folder.png";
 import FolderSvgPath from "./icons/folder-2.svg";
-import type { FileItem } from "./queries";
+import type { FileItem } from "./queries/types";
 
 export function App() {
   const [path, setPath] = React.useState([""]);
