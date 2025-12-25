@@ -1,6 +1,6 @@
 import React from "react";
 import { useFilesList } from "./queries/filesList.query";
-import type { FileItem } from "./queries/filesList.query";
+import type { FileItem } from "./queries/types";
 
 import UnknownFileSvgPath from "./icons/unknown-file.svg";
 import FolderSvgPath from "./icons/folder-2.svg";
@@ -30,7 +30,7 @@ function formatFileSize(bytes: number) {
   );
 }
 
-const FileItem: React.FC<{
+const FileTableRow: React.FC<{
   file: FileItem;
   pushPath: (folder: string) => void;
   onDelete: (file: FileItem) => void;
@@ -155,7 +155,7 @@ const FilesContent: React.FC<{
         <th className="actions-col">Actions</th>
       </tr>
       {files.map((file) => (
-        <FileItem
+        <FileTableRow
           key={file.name}
           file={file}
           pushPath={pushPath}

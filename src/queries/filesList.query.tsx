@@ -1,5 +1,6 @@
 import { useQuery } from "@tanstack/react-query";
-import { API_URL, asyncWait, type FileItem } from "./types";
+import type { FileItem } from "./types";
+import { API_URL, asyncWait } from "./types";
 
 const dummyData: Record<string, FileItem[]> = {
   "/": [
