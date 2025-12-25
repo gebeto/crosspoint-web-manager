@@ -49,7 +49,7 @@ export const UploadModal: React.FC<{
     // form fields available until after file upload completes
     xhr.open(
       "POST",
-      API_URL + "/upload?path=" + encodeURIComponent(currentPath),
+      API_URL + "/api/upload?path=" + encodeURIComponent(currentPath),
       true
     );
 

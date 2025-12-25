@@ -1,7 +1,6 @@
 import React from "react";
-import { useQueryClient } from "@tanstack/react-query";
 import { Modal } from "../components/Modal";
-import { API_URL } from "../queries/types";
+import { useDeleteItemMutation } from "../queries/deleteItem.query";
 
 export const DeleteConfirmationModal: React.FC<{
   open: boolean;
@@ -10,32 +9,33 @@ export const DeleteConfirmationModal: React.FC<{
   itemType: "file" | "folder";
 }> = ({ open, onClose, filePath, itemType }) => {
   const path = filePath.join("/") || "/";
-  const queryClient = useQueryClient();
-  const closeDeleteModal = () => {};
+  const deleteMutation = useDeleteItemMutation();
   const confirmDelete = () => {
-    const formData = new FormData();
-    formData.append("path", path);
-    formData.append("type", itemType);
+    deleteMutation.mutate({ path, type: itemType });
 
-    const xhr = new XMLHttpRequest();
-    xhr.open("POST", API_URL + "/delete", true);
+    //   const formData = new FormData();
+    //   formData.append("path", path);
+    //   formData.append("type", itemType);
 
-    xhr.onload = function () {
-      if (xhr.status === 200) {
-        queryClient.invalidateQueries({ queryKey: ["files"] });
-        onClose();
-      } else {
-        alert("Failed to delete: " + xhr.responseText);
-        onClose();
-      }
-    };
+    //   const xhr = new XMLHttpRequest();
+    //   xhr.open("POST", API_URL + "/delete", true);
 
-    xhr.onerror = function () {
-      alert("Failed to delete - network error");
-      onClose();
-    };
+    //   xhr.onload = function () {
+    //     if (xhr.status === 200) {
+    //       queryClient.invalidateQueries({ queryKey: ["files"] });
+    //       onClose();
+    //     } else {
+    //       alert("Failed to delete: " + xhr.responseText);
+    //       onClose();
+    //     }
+    //   };
 
-    xhr.send(formData);
+    //   xhr.onerror = function () {
+    //     alert("Failed to delete - network error");
+    //     onClose();
+    //   };
+
+    //   xhr.send(formData);
   };
 
   return (
@@ -46,10 +46,14 @@ export const DeleteConfirmationModal: React.FC<{
         <p className="delete-item-name" id="deleteItemName"></p>
         <input type="hidden" id="deleteItemPath" />
         <input type="hidden" id="deleteItemType" />
-        <button className="delete-btn-confirm" onClick={confirmDelete}>
+        <button
+          className="delete-btn-confirm"
+          disabled={deleteMutation.isPending}
+          onClick={confirmDelete}
+        >
           Delete
         </button>
-        <button className="delete-btn-cancel" onClick={closeDeleteModal}>
+        <button className="delete-btn-cancel" onClick={onClose}>
           Cancel
         </button>
       </div>

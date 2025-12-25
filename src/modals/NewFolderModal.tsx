@@ -35,7 +35,7 @@ export const NewFolderModal: React.FC<{
     formData.append("path", currentPath);
 
     const xhr = new XMLHttpRequest();
-    xhr.open("POST", API_URL + "/mkdir", true);
+    xhr.open("POST", API_URL + "/api/mkdir", true);
 
     xhr.onload = function () {
       if (xhr.status === 200) {
