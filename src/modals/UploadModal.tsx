@@ -79,6 +79,7 @@ export const UploadModal: React.FC<{
       setUploadAllowed(true);
     };
 
+    setUploadStatus("uploading");
     xhr.send(formData);
   };
 

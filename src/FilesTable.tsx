@@ -148,20 +148,24 @@ const FilesContent: React.FC<{
 
   return (
     <table className="file-table">
+    <thead>
       <tr>
         <th>Name</th>
         <th>Type</th>
         <th>Size</th>
         <th className="actions-col">Actions</th>
       </tr>
-      {files.map((file) => (
-        <FileTableRow
-          key={file.name}
-          file={file}
-          pushPath={pushPath}
-          onDelete={onDelete}
-        />
-      ))}
+      </thead>
+      <tbody>
+        {files.map((file) => (
+          <FileTableRow
+            key={file.name}
+            file={file}
+            pushPath={pushPath}
+            onDelete={onDelete}
+          />
+        ))}
+      </tbody>
     </table>
   );
 };
