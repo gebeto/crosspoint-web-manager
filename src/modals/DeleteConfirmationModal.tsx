@@ -11,31 +11,9 @@ export const DeleteConfirmationModal: React.FC<{
   const path = filePath.join("/") || "/";
   const deleteMutation = useDeleteItemMutation();
   const confirmDelete = () => {
-    deleteMutation.mutate({ path, type: itemType });
-
-    //   const formData = new FormData();
-    //   formData.append("path", path);
-    //   formData.append("type", itemType);
-
-    //   const xhr = new XMLHttpRequest();
-    //   xhr.open("POST", API_URL + "/delete", true);
-
-    //   xhr.onload = function () {
-    //     if (xhr.status === 200) {
-    //       queryClient.invalidateQueries({ queryKey: ["files"] });
-    //       onClose();
-    //     } else {
-    //       alert("Failed to delete: " + xhr.responseText);
-    //       onClose();
-    //     }
-    //   };
-
-    //   xhr.onerror = function () {
-    //     alert("Failed to delete - network error");
-    //     onClose();
-    //   };
-
-    //   xhr.send(formData);
+    deleteMutation.mutateAsync({ path, type: itemType }).then(() => {
+      onClose();
+    });
   };
 
   return (
