@@ -81,7 +81,7 @@ export function App() {
           open={!!deleteFile}
           onClose={() => setDeleteFile(null)}
           filePath={deleteFile ? [...path, deleteFile.name] : []}
-          itemType="file"
+          itemType={deleteFile?.isDirectory ? "folder" : "file"}
         />
       )}
     </>
