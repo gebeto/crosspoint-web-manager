@@ -1,13 +1,13 @@
 import React from "react";
-import { useFilesList } from "./queries/filesList.query";
-import type { FileItem } from "./queries/types";
+import { useFilesList } from "@/queries/filesList.query";
+import type { FileItem } from "@/queries/types";
 
-import UnknownFileSvgPath from "./icons/unknown-file.svg";
-import FolderSvgPath from "./icons/folder-2.svg";
-import ImageSvgPath from "./icons/image.svg";
-import EpubSvgPath from "./icons/epub.png";
-import TrashSvgPath from "./icons/trash.svg";
-import HomeSvgPath from "./icons/home.svg";
+import UnknownFileSvgPath from "@/icons/unknown-file.svg";
+import FolderSvgPath from "@/icons/folder-2.svg";
+import ImageSvgPath from "@/icons/image.svg";
+import EpubSvgPath from "@/icons/epub.png";
+import TrashSvgPath from "@/icons/trash.svg";
+import HomeSvgPath from "@/icons/home.svg";
 
 // function escapeHtml(unsafe: string) {
 //   return unsafe
@@ -148,13 +148,13 @@ const FilesContent: React.FC<{
 
   return (
     <table className="file-table">
-    <thead>
-      <tr>
-        <th>Name</th>
-        <th>Type</th>
-        <th>Size</th>
-        <th className="actions-col">Actions</th>
-      </tr>
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Type</th>
+          <th>Size</th>
+          <th className="actions-col">Actions</th>
+        </tr>
       </thead>
       <tbody>
         {files.map((file) => (

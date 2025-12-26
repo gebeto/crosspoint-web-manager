@@ -17,30 +17,10 @@ export const useDeleteItemMutation = () => {
         if (response.status === 200) {
           queryClient.invalidateQueries({ queryKey: ["files"] });
         }
-      } catch {
+      } catch (err) {
         alert("Failed to delete - network error");
-        return;
+        throw err;
       }
-
-      // const xhr = new XMLHttpRequest();
-      // xhr.open("POST", API_URL + "/delete", true);
-
-      // xhr.onload = function () {
-      //   if (xhr.status === 200) {
-      //     queryClient.invalidateQueries({ queryKey: ["files"] });
-      //     onClose();
-      //   } else {
-      //     alert("Failed to delete: " + xhr.responseText);
-      //     onClose();
-      //   }
-      // };
-
-      // xhr.onerror = function () {
-      //   alert("Failed to delete - network error");
-      //   onClose();
-      // };
-
-      // xhr.send(formData);
     },
   });
 };

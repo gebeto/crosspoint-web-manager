@@ -33,3 +33,12 @@ export type Directory = {
 };
 
 export type FileItem = EpubFile | Directory | UnknownFile;
+
+export type DeviceStatus = {
+  version: string;
+  ip: string;
+  mode: "AP" | "STA";
+  rssi: number;
+  freeHeap: number;
+  uptime: number;
+};
