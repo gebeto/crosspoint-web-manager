@@ -1,7 +1,7 @@
-import { useRouter } from "./Router";
+import { useNavigate } from "react-router";
 
 export const PageFooter = () => {
-  const { setRoute } = useRouter();
+  const navigate = useNavigate();
   return (
     <>
       <div className="card">
@@ -13,8 +13,8 @@ export const PageFooter = () => {
           }}
           className="nav-links"
         >
-          <a onClick={() => setRoute("status")}>Home</a>
-          <a onClick={() => setRoute("files")}>File Manager</a>
+          <a onClick={() => navigate("/")}>Home</a>
+          <a onClick={() => navigate("/files")}>File Manager</a>
         </div>
         <p style={{ textAlign: "center", color: "#95a5a6", margin: 0 }}>
           <a
