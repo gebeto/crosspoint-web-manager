@@ -82,6 +82,7 @@ h2 {
   color: white;
   text-decoration: none;
   margin-right: 10px;
+  cursor: pointer;
 }
 .nav-links a:hover {
   background-color: #2980b9;
@@ -329,6 +330,9 @@ h2 {
   background-color: rgba(0, 0, 0, 0.06);
   color: #e74c3c;
 }
+.file-size-col {
+  white-space: nowrap;
+}
 .actions-col {
   width: 60px;
   text-align: center;
@@ -406,7 +410,7 @@ h2 {
     font-size: 16px;
   }
   .card {
-    padding: 12px;
+    padding: 0px;
     margin: 10px 0;
   }
   .page-header {

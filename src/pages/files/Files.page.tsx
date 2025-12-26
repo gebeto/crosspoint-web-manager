@@ -9,6 +9,7 @@ import NewFolderSvgPath from "@/icons/new-folder.png";
 import FolderSvgPath from "@/icons/folder-2.svg";
 
 import { FilesTable } from "./FilesTable";
+import { PageFooter } from "@/components/PageFooter";
 
 export const FilesPage = () => {
   const [path, setPath] = React.useState([""]);
@@ -51,17 +52,7 @@ export const FilesPage = () => {
         onDelete={(file: FileItem) => setDeleteFile(file)}
       />
 
-      <div className="card">
-        <p style={{ textAlign: "center", color: "#95a5a6", margin: 0 }}>
-          <a
-            href="https://github.com/daveallie/crosspoint-reader"
-            style={{ color: "inherit", textDecoration: "inherit" }}
-          >
-            CrossPoint E-Reader
-          </a>{" "}
-          • Open Source
-        </p>
-      </div>
+      <PageFooter />
 
       {uploadModalOpen && (
         <UploadModal

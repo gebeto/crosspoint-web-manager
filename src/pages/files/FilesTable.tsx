@@ -49,7 +49,7 @@ const FileTableRow: React.FC<{
         <td>
           <span className="badge epub-badge">EPUB</span>
         </td>
-        <td>{formatFileSize(file.size)}</td>
+        <td className="file-size-col">{formatFileSize(file.size)}</td>
         <td className="actions-col">
           <button
             className="delete-btn"
@@ -121,7 +121,7 @@ const FileTableRow: React.FC<{
         <td>
           <span className="badge">{fileExtension}</span>
         </td>
-        <td>{formatFileSize(file.size)}</td>
+        <td className="file-size-col">{formatFileSize(file.size)}</td>
         <td className="actions-col">
           <button
             className="delete-btn"
