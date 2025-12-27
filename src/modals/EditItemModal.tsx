@@ -9,15 +9,25 @@ export const EditItemModal: React.FC<{
   path: string[];
   file: FileItem;
 }> = ({ open, onClose, path, file }) => {
+  const currentPath = path.join("/") || "/";
   const moveMutation = useMoveItemMutation();
   const nameInputRef = React.useRef<HTMLInputElement>(null);
+  const pathInputRef = React.useRef<HTMLInputElement>(null);
   const editItem = async () => {
     if (!nameInputRef.current) return;
+    if (!pathInputRef.current) return;
 
     const newName = nameInputRef.current.value.trim();
 
     if (!newName) {
       alert("Please enter a name!");
+      return;
+    }
+
+    const newPath = pathInputRef.current.value.trim();
+
+    if (!newPath || !newPath.startsWith("/")) {
+      alert("Please enter correct path!");
       return;
     }
 
@@ -34,7 +44,9 @@ export const EditItemModal: React.FC<{
 
     await moveMutation.mutateAsync({
       path: [...path, file.name].join("/"),
-      newPath: [...path, newName].join("/"),
+      newPath: newPath.endsWith("/")
+        ? newPath + newName
+        : [newPath, newName].join("/"),
     });
 
     onClose();
@@ -43,7 +55,21 @@ export const EditItemModal: React.FC<{
   return (
     <Modal open={open} onClose={onClose} title="✏️ Edit">
       <div className="folder-form">
-        <p className="file-info">Edit</p>
+        <label htmlFor="path-input" className="file-info">
+          Path
+        </label>
+        <input
+          ref={pathInputRef}
+          defaultValue={currentPath}
+          type="text"
+          id="path-input"
+          className="folder-input"
+          placeholder="Path"
+        />
+
+        <label htmlFor="name-input" className="file-info">
+          Name
+        </label>
         <input
           ref={nameInputRef}
           defaultValue={file.name}
