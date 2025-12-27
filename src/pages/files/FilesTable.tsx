@@ -93,6 +93,17 @@ const FileTableRow: React.FC<{
         <td>-</td>
         <td className="actions-col">
           <button
+            className="delete-btn"
+            title="Edit"
+            onClick={(e) => {
+              e.stopPropagation();
+              e.preventDefault();
+              onEdit(file);
+            }}
+          >
+            ✏️
+          </button>
+          <button
             onClick={(e) => {
               e.stopPropagation();
               onDelete(file);
@@ -126,6 +137,13 @@ const FileTableRow: React.FC<{
         </td>
         <td className="file-size-col">{formatFileSize(file.size)}</td>
         <td className="actions-col">
+          <button
+            className="delete-btn"
+            title="Edit"
+            onClick={() => onEdit(file)}
+          >
+            ✏️
+          </button>
           <button
             className="delete-btn"
             // onclick="openDeleteModal('Unknown-1.bmp', '/Wallpapers/Unknown-1.bmp', false)"
