@@ -8,6 +8,7 @@ import ImageSvgPath from "@/icons/image.svg";
 import EpubSvgPath from "@/icons/epub.png";
 import TrashSvgPath from "@/icons/trash.svg";
 import HomeSvgPath from "@/icons/home.svg";
+import PencilSvgPath from "@/icons/pencil.svg";
 
 // function escapeHtml(unsafe: string) {
 //   return unsafe
@@ -57,7 +58,7 @@ const FileTableRow: React.FC<{
             title="Edit"
             onClick={() => onEdit(file)}
           >
-            ✏️
+            <img src={PencilSvgPath} width="16px" />
           </button>
           <button
             className="delete-btn"
@@ -101,7 +102,7 @@ const FileTableRow: React.FC<{
               onEdit(file);
             }}
           >
-            ✏️
+            <img src={PencilSvgPath} width="16px" />
           </button>
           <button
             onClick={(e) => {
@@ -142,7 +143,7 @@ const FileTableRow: React.FC<{
             title="Edit"
             onClick={() => onEdit(file)}
           >
-            ✏️
+            <img src={PencilSvgPath} width="16px" />
           </button>
           <button
             className="delete-btn"
