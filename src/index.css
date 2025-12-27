@@ -336,6 +336,7 @@ h2 {
 .actions-col {
   width: 60px;
   text-align: center;
+  display: flex;
 }
 /* Delete modal */
 .delete-warning {

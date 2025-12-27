@@ -10,10 +10,12 @@ import FolderSvgPath from "@/icons/folder-2.svg";
 
 import { FilesTable } from "./FilesTable";
 import { PageFooter } from "@/components/PageFooter";
+import { EditItemModal } from "@/modals/EditItemModal";
 
 export const FilesPage = () => {
   const [path, setPath] = React.useState([""]);
   const [deleteFile, setDeleteFile] = React.useState<FileItem | null>(null);
+  const [editFile, setEditFile] = React.useState<FileItem | null>(null);
 
   const [newFolderModalOpen, setNewFolderModalOpen] = React.useState(false);
   const [uploadModalOpen, setUploadModalOpen] = React.useState(false);
@@ -50,6 +52,7 @@ export const FilesPage = () => {
         path={path}
         setPath={setPath}
         onDelete={(file: FileItem) => setDeleteFile(file)}
+        onEdit={(file: FileItem) => setEditFile(file)}
       />
 
       <PageFooter />
@@ -74,6 +77,15 @@ export const FilesPage = () => {
           onClose={() => setDeleteFile(null)}
           filePath={deleteFile ? [...path, deleteFile.name] : []}
           itemType={deleteFile?.isDirectory ? "folder" : "file"}
+        />
+      )}
+
+      {!!editFile && (
+        <EditItemModal
+          open
+          onClose={() => setEditFile(null)}
+          path={path}
+          file={editFile}
         />
       )}
     </>

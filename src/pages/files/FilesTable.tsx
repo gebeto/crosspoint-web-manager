@@ -34,7 +34,8 @@ const FileTableRow: React.FC<{
   file: FileItem;
   pushPath: (folder: string) => void;
   onDelete: (file: FileItem) => void;
-}> = ({ file, pushPath, onDelete }) => {
+  onEdit: (file: FileItem) => void;
+}> = ({ file, pushPath, onDelete, onEdit }) => {
   const fileExtension = file.name.split(".").pop()?.toUpperCase() ?? "";
 
   if (file.isEpub) {
@@ -53,11 +54,13 @@ const FileTableRow: React.FC<{
         <td className="actions-col">
           <button
             className="delete-btn"
-            // onClick={openDeleteModal(
-            //   "Antykrykhkist_Pro_nevrazlyve_u_realnomu_zhytti.epub",
-            //   "/Antykrykhkist_Pro_nevrazlyve_u_realnomu_zhytti.epub",
-            //   false
-            // )}
+            title="Edit"
+            onClick={() => onEdit(file)}
+          >
+            ✏️
+          </button>
+          <button
+            className="delete-btn"
             title="Delete file"
             onClick={() => onDelete(file)}
           >
@@ -141,7 +144,8 @@ const FilesContent: React.FC<{
   files: FileItem[];
   pushPath: (folder: string) => void;
   onDelete: (file: FileItem) => void;
-}> = ({ files, pushPath, onDelete }) => {
+  onEdit: (file: FileItem) => void;
+}> = ({ files, pushPath, onDelete, onEdit }) => {
   if (files.length === 0) {
     return <div className="no-files">This folder is empty</div>;
   }
@@ -163,6 +167,7 @@ const FilesContent: React.FC<{
             file={file}
             pushPath={pushPath}
             onDelete={onDelete}
+            onEdit={onEdit}
           />
         ))}
       </tbody>
@@ -174,7 +179,8 @@ export const FilesTable: React.FC<{
   path: string[];
   setPath: (newPath: string[]) => void;
   onDelete: (file: FileItem) => void;
-}> = ({ setPath, path, onDelete }) => {
+  onEdit: (file: FileItem) => void;
+}> = ({ setPath, path, onDelete, ...props }) => {
   const popPath = () => {
     setPath(path.slice(0, path.length - 1));
   };
@@ -253,6 +259,7 @@ export const FilesTable: React.FC<{
         ) : (
           <FilesContent
             onDelete={onDelete}
+            onEdit={props.onEdit}
             files={sortedFiles}
             pushPath={(folder) => {
               setPath([...path, folder]);
