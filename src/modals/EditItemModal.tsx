@@ -2,6 +2,7 @@ import React from "react";
 import { Modal } from "../components/Modal";
 import type { FileItem } from "@/queries/types";
 import { useMoveItemMutation } from "@/queries/moveItem.query";
+import { useFilesList } from "@/queries/filesList.query";
 
 export const EditItemModal: React.FC<{
   open: boolean;
@@ -9,18 +10,31 @@ export const EditItemModal: React.FC<{
   path: string[];
   file: FileItem;
 }> = ({ open, onClose, path, file }) => {
+  const { data: filesList = [] } = useFilesList(path);
+  const directories = React.useMemo(() => {
+    const result = [
+      path.join("/") || "/",
+      ...filesList
+        .filter((f) => f.isDirectory)
+        .map((f) => [...path, f.name].join("/")),
+    ];
+    if (path.length > 1) {
+      return [path.slice(0, path.length - 1).join("/") || "/", ...result];
+    }
+    return result;
+  }, [path, filesList]);
   const currentPath = path.join("/") || "/";
   const moveMutation = useMoveItemMutation();
   const nameInputRef = React.useRef<HTMLInputElement>(null);
-  const pathInputRef = React.useRef<HTMLInputElement>(null);
+  const pathInputRef = React.useRef<HTMLSelectElement>(null);
   const editItem = async () => {
     if (!nameInputRef.current) return;
     if (!pathInputRef.current) return;
 
     const newName = nameInputRef.current.value.trim();
 
-    if (!newName) {
-      alert("Please enter a name!");
+    if (!newName || /[/]/.test(newName)) {
+      alert("Please enter correct name!");
       return;
     }
 
@@ -58,14 +72,17 @@ export const EditItemModal: React.FC<{
         <label htmlFor="path-input" className="file-info">
           Path
         </label>
-        <input
+        <select
+          className="folder-input"
           ref={pathInputRef}
           defaultValue={currentPath}
-          type="text"
-          id="path-input"
-          className="folder-input"
-          placeholder="Path"
-        />
+        >
+          {directories.map((dir) => (
+            <option key={dir} value={dir}>
+              {dir}
+            </option>
+          ))}
+        </select>
 
         <label htmlFor="name-input" className="file-info">
           Name

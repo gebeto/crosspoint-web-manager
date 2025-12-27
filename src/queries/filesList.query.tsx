@@ -72,21 +72,22 @@ const dummyData: Record<string, FileItem[]> = {
   "/empty-folder": [],
 };
 
-export const useFilesList = (path: string) => {
+export const useFilesList = (_path: string[]) => {
+  const pathStr = _path.join("/") || "/";
   return useQuery({
-    queryKey: ["files", path],
+    queryKey: ["files", pathStr],
     staleTime: 0,
     gcTime: 0,
     queryFn: async () => {
       if (API_URL !== null) {
         const response = await fetch(
-          `${API_URL}/api/files?path=${encodeURIComponent(path)}`
+          `${API_URL}/api/files?path=${encodeURIComponent(pathStr)}`
         ).then((res) => res.json() as Promise<FileItem[]>);
         return response;
       }
 
       await asyncWait(500);
-      return dummyData[path] || [];
+      return dummyData[pathStr] || [];
     },
   });
 };

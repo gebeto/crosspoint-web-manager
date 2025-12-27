@@ -184,8 +184,7 @@ export const FilesTable: React.FC<{
   const popPath = () => {
     setPath(path.slice(0, path.length - 1));
   };
-  const pathStr = path.join("/") || "/";
-  const { data: files = [], isLoading } = useFilesList(pathStr);
+  const { data: files = [], isLoading } = useFilesList(path);
   const sortedFiles = React.useMemo(() => {
     return [...files].sort((a, b) => {
       // Directories first, then epub files, then other files, alphabetically within each group
