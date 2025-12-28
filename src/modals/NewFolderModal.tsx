@@ -1,6 +1,6 @@
 import React from "react";
 import { useQueryClient } from "@tanstack/react-query";
-import { Modal } from "../components/Modal";
+import { Modal } from "../components/Modal/Modal";
 import { API_URL } from "../queries/types";
 
 export const NewFolderModal: React.FC<{
@@ -56,15 +56,15 @@ export const NewFolderModal: React.FC<{
   return (
     <Modal open={open} onClose={onClose} title="📁 New Folder">
       <div className="folder-form">
-        <p className="file-info">
-          Create a new folder in <strong id="folderPathDisplay"></strong>
-        </p>
+        <label htmlFor="folderNameInput" className="input-label">
+          Create a new folder in <strong>{currentPath}</strong>
+        </label>
         <input
           ref={inputRef}
           autoFocus
           type="text"
-          id="folderName"
-          className="folder-input"
+          id="folderNameInput"
+          className="text-input"
           placeholder="Folder name..."
         />
         <button className="folder-btn" onClick={createFolder}>

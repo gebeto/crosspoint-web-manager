@@ -9,6 +9,7 @@ import EpubSvgPath from "@/icons/epub.png";
 import TrashSvgPath from "@/icons/trash.svg";
 import HomeSvgPath from "@/icons/home.svg";
 import PencilSvgPath from "@/icons/pencil.svg";
+import { Loader } from "@/components/Loader/Loader";
 
 // function escapeHtml(unsafe: string) {
 //   return unsafe
@@ -271,9 +272,7 @@ export const FilesTable: React.FC<{
 
       <div id="file-table">
         {isLoading ? (
-          <div className="loader-container">
-            <span className="loader"></span>
-          </div>
+          <Loader />
         ) : (
           <FilesContent
             onDelete={onDelete}

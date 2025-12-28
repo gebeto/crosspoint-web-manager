@@ -1,4 +1,5 @@
 import type React from "react";
+import "./Modal.css";
 
 export const Modal: React.FC<
   React.PropsWithChildren<{

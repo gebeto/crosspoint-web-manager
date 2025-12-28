@@ -1,0 +1,225 @@
+.breadcrumb-inline {
+  color: #7f8c8d;
+  font-size: 1.1em;
+  margin-bottom: 20px;
+  display: flex;
+  align-items: center;
+}
+.breadcrumb-inline a {
+  /* color: #3498db; */
+  color: #3b4d5f;
+  text-decoration: none;
+  cursor: pointer;
+}
+.breadcrumb-inline a:hover {
+  text-decoration: underline;
+  color: #2c3e50;
+}
+.breadcrumb-inline .sep {
+  margin: 0 6px;
+  color: #bdc3c7;
+}
+.breadcrumb-inline .current {
+  color: #2c3e50;
+  font-weight: 500;
+}
+
+/* Action buttons */
+.action-buttons {
+  display: flex;
+  gap: 10px;
+}
+.action-btn {
+  background-color: rgba(0, 0, 0, 0);
+  border: 2px solid #2c3e50;
+  color: #2c3e50;
+
+  padding: 10px 16px;
+  cursor: pointer;
+  font-size: 0.95em;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+.action-btn:hover {
+  background-color: rgba(0, 0, 0, 0.04);
+}
+
+.file-title {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  height: 30px;
+}
+#file-table {
+  overflow: auto;
+}
+.file-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+.file-table th,
+.file-table td {
+  padding: 12px;
+  text-align: left;
+  border-bottom: 1px solid #eee;
+}
+.file-table th {
+  font-weight: 600;
+  color: #545d5e;
+}
+.folder-row {
+  cursor: pointer;
+}
+.folder-row:hover {
+  background-color: rgba(0, 0, 0, 0.04) !important;
+}
+.badge {
+  display: inline-block;
+  padding: 2px 8px;
+  background-color: rgba(0, 0, 0, 0.1);
+  color: black;
+  border-radius: 10px;
+  font-size: 0.9em;
+}
+.badge.epub-badge {
+  background-color: #27ae60;
+  color: white;
+}
+.badge.folder-badge {
+  background-color: #f39c12;
+  color: white;
+}
+.file-icon {
+  margin-right: 8px;
+}
+
+.no-files {
+  text-align: center;
+  color: #95a5a6;
+  height: 96px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-style: italic;
+}
+
+.contents-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 12px;
+}
+.contents-title {
+  font-size: 1.1em;
+  font-weight: 600;
+  color: #34495e;
+  margin: 0;
+}
+
+/* Delete button styles */
+.delete-btn {
+  display: flex;
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 1.1em;
+  padding: 4px 8px;
+  border-radius: 4px;
+  color: #95a5a6;
+  transition: all 0.15s;
+}
+.delete-btn:hover {
+  /* background-color: #fee; */
+  background-color: rgba(0, 0, 0, 0.06);
+  color: #e74c3c;
+}
+.file-size-col {
+  white-space: nowrap;
+}
+.actions-col {
+  width: 60px;
+  text-align: center;
+  display: flex;
+}
+
+.folder-btn {
+  background-color: #f39c12;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 1em;
+  width: 100%;
+}
+.folder-btn:hover {
+  background-color: #d68910;
+}
+
+.folder-form {
+  margin-top: 10px;
+}
+
+.file-info {
+  color: #7f8c8d;
+  font-size: 0.85em;
+  margin: 8px 0;
+}
+.summary-inline {
+  color: #7f8c8d;
+  font-size: 0.9em;
+}
+
+@media (max-width: 600px) {
+  .breadcrumb-inline {
+    font-size: 0.95em;
+  }
+  .contents-header {
+    margin-bottom: 8px;
+    flex-wrap: wrap;
+    gap: 4px;
+  }
+  .contents-title {
+    font-size: 1em;
+  }
+  .action-buttons {
+    gap: 6px;
+  }
+  .file-table th,
+  .file-table td {
+    padding: 8px 6px;
+    /* font-size: 0.9em; */
+  }
+  .file-table th {
+    font-size: 0.85em;
+  }
+  .epub-badge,
+  .folder-badge {
+    padding: 2px 5px;
+    font-size: 0.65em;
+    margin-left: 4px;
+  }
+  .actions-col {
+    width: 40px;
+  }
+  .delete-btn {
+    font-size: 1em;
+    padding: 2px 4px;
+  }
+  .no-files {
+    padding: 20px;
+    font-size: 0.9em;
+  }
+  .file-icon {
+    margin-right: 4px;
+  }
+  .summary-inline {
+    font-size: 0.8em;
+  }
+  .action-btn {
+    padding: 8px 10px;
+    font-size: 0.85em;
+  }
+}

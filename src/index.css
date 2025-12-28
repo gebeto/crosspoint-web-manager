@@ -47,31 +47,7 @@ h2 {
   align-items: center;
   gap: 12px;
 }
-.breadcrumb-inline {
-  color: #7f8c8d;
-  font-size: 1.1em;
-  margin-bottom: 20px;
-  display: flex;
-  align-items: center;
-}
-.breadcrumb-inline a {
-  /* color: #3498db; */
-  color: #3b4d5f;
-  text-decoration: none;
-  cursor: pointer;
-}
-.breadcrumb-inline a:hover {
-  text-decoration: underline;
-  color: #2c3e50;
-}
-.breadcrumb-inline .sep {
-  margin: 0 6px;
-  color: #bdc3c7;
-}
-.breadcrumb-inline .current {
-  color: #2c3e50;
-  font-weight: 500;
-}
+
 .nav-links {
   margin: 20px 0;
 }
@@ -87,153 +63,7 @@ h2 {
 .nav-links a:hover {
   background-color: #2980b9;
 }
-/* Action buttons */
-.action-buttons {
-  display: flex;
-  gap: 10px;
-}
-.action-btn {
-  background-color: rgba(0, 0, 0, 0);
-  border: 2px solid #2c3e50;
-  color: #2c3e50;
 
-  padding: 10px 16px;
-  cursor: pointer;
-  font-size: 0.95em;
-  font-weight: 600;
-  display: flex;
-  align-items: center;
-  gap: 6px;
-}
-.action-btn:hover {
-  background-color: rgba(0, 0, 0, 0.04);
-}
-/* Upload modal */
-.modal-overlay {
-  display: none;
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background: rgba(0, 0, 0, 0.5);
-  z-index: 200;
-  justify-content: center;
-  align-items: center;
-}
-.modal-overlay.open {
-  display: flex;
-}
-.modal {
-  background: white;
-  border-radius: 8px;
-  padding: 25px;
-  max-width: 450px;
-  width: 90%;
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
-}
-.modal h3 {
-  margin: 0 0 15px 0;
-  color: #2c3e50;
-}
-.modal-close {
-  float: right;
-  background: none;
-  border: none;
-  font-size: 1.5em;
-  cursor: pointer;
-  color: #7f8c8d;
-  line-height: 1;
-}
-.modal-close:hover {
-  color: #2c3e50;
-}
-.file-title {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  height: 30px;
-}
-#file-table {
-  overflow: auto;
-}
-.file-table {
-  width: 100%;
-  border-collapse: collapse;
-}
-.file-table th,
-.file-table td {
-  padding: 12px;
-  text-align: left;
-  border-bottom: 1px solid #eee;
-}
-.file-table th {
-  font-weight: 600;
-  color: #545d5e;
-}
-.folder-row {
-  cursor: pointer;
-}
-.folder-row:hover {
-  background-color: rgba(0, 0, 0, 0.04) !important;
-}
-.badge {
-  display: inline-block;
-  padding: 2px 8px;
-  background-color: rgba(0, 0, 0, 0.1);
-  color: black;
-  border-radius: 10px;
-  font-size: 0.9em;
-}
-.badge.epub-badge {
-  background-color: #27ae60;
-  color: white;
-}
-.badge.folder-badge {
-  background-color: #f39c12;
-  color: white;
-}
-.file-icon {
-  margin-right: 8px;
-}
-.upload-form {
-  margin-top: 10px;
-}
-.upload-form input[type="file"] {
-  margin: 10px 0;
-  width: 100%;
-}
-.upload-btn {
-  background-color: #27ae60;
-  color: white;
-  padding: 10px 20px;
-  border: none;
-  border-radius: 4px;
-  cursor: pointer;
-  font-size: 1em;
-  width: 100%;
-}
-.upload-btn:hover {
-  background-color: #219a52;
-}
-.upload-btn:disabled {
-  background-color: #95a5a6;
-  cursor: not-allowed;
-}
-.file-info {
-  color: #7f8c8d;
-  font-size: 0.85em;
-  margin: 8px 0;
-}
-.no-files {
-  text-align: center;
-  color: #95a5a6;
-  height: 96px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  font-style: italic;
-}
 .message {
   padding: 15px;
   border-radius: 4px;
@@ -249,49 +79,8 @@ h2 {
   color: #721c24;
   border: 1px solid #f5c6cb;
 }
-.contents-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 12px;
-}
-.contents-title {
-  font-size: 1.1em;
-  font-weight: 600;
-  color: #34495e;
-  margin: 0;
-}
-.summary-inline {
-  color: #7f8c8d;
-  font-size: 0.9em;
-}
-#progress-container {
-  display: none;
-  margin-top: 10px;
-}
-#progress-bar {
-  width: 100%;
-  height: 20px;
-  background-color: #e0e0e0;
-  border-radius: 10px;
-  overflow: hidden;
-}
-#progress-fill {
-  height: 100%;
-  background-color: #27ae60;
-  width: 0%;
-  transition: width 0.3s;
-}
-#progress-text {
-  text-align: center;
-  margin-top: 5px;
-  font-size: 0.9em;
-  color: #7f8c8d;
-}
-.folder-form {
-  margin-top: 10px;
-}
-.folder-input {
+
+.text-input {
   width: 100%;
   padding: 10px;
   border: 1px solid #ddd;
@@ -300,110 +89,13 @@ h2 {
   margin-bottom: 10px;
   box-sizing: border-box;
 }
-.folder-btn {
-  background-color: #f39c12;
-  color: white;
-  padding: 10px 20px;
-  border: none;
-  border-radius: 4px;
-  cursor: pointer;
-  font-size: 1em;
-  width: 100%;
+
+.input-label {
+  color: #7f8c8d;
+  font-size: 0.85em;
+  margin: 8px 0;
 }
-.folder-btn:hover {
-  background-color: #d68910;
-}
-/* Delete button styles */
-.delete-btn {
-  display: flex;
-  background: none;
-  border: none;
-  cursor: pointer;
-  font-size: 1.1em;
-  padding: 4px 8px;
-  border-radius: 4px;
-  color: #95a5a6;
-  transition: all 0.15s;
-}
-.delete-btn:hover {
-  /* background-color: #fee; */
-  background-color: rgba(0, 0, 0, 0.06);
-  color: #e74c3c;
-}
-.file-size-col {
-  white-space: nowrap;
-}
-.actions-col {
-  width: 60px;
-  text-align: center;
-  display: flex;
-}
-/* Delete modal */
-.delete-warning {
-  color: #e74c3c;
-  font-weight: 600;
-  margin: 10px 0;
-}
-.delete-item-name {
-  font-weight: 600;
-  color: #2c3e50;
-  word-break: break-all;
-}
-.delete-btn-confirm {
-  background-color: #e74c3c;
-  color: white;
-  padding: 10px 20px;
-  border: none;
-  border-radius: 4px;
-  cursor: pointer;
-  font-size: 1em;
-  width: 100%;
-}
-.delete-btn-confirm:hover {
-  background-color: #c0392b;
-}
-.delete-btn-cancel {
-  background-color: #95a5a6;
-  color: white;
-  padding: 10px 20px;
-  border: none;
-  border-radius: 4px;
-  cursor: pointer;
-  font-size: 1em;
-  width: 100%;
-  margin-top: 10px;
-}
-.delete-btn-cancel:hover {
-  background-color: #7f8c8d;
-}
-.loader-container {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  /* margin: 20px 0; */
-  height: 96px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-.loader {
-  width: 48px;
-  height: 48px;
-  border: 5px solid #aaa;
-  border-bottom-color: transparent;
-  border-radius: 50%;
-  display: inline-block;
-  box-sizing: border-box;
-  animation: rotation 1s linear infinite;
-}
-@keyframes rotation {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
-}
+
 /* Mobile responsive styles */
 @media (max-width: 600px) {
   body {
@@ -425,64 +117,9 @@ h2 {
   h1 {
     font-size: 1.3em;
   }
-  .breadcrumb-inline {
-    font-size: 0.95em;
-  }
   .nav-links a {
     padding: 8px 12px;
     margin-right: 6px;
-    font-size: 0.9em;
-  }
-  .action-buttons {
-    gap: 6px;
-  }
-  .action-btn {
-    padding: 8px 10px;
-    font-size: 0.85em;
-  }
-  .file-table th,
-  .file-table td {
-    padding: 8px 6px;
-    /* font-size: 0.9em; */
-  }
-  .file-table th {
-    font-size: 0.85em;
-  }
-  .file-icon {
-    margin-right: 4px;
-  }
-  .epub-badge,
-  .folder-badge {
-    padding: 2px 5px;
-    font-size: 0.65em;
-    margin-left: 4px;
-  }
-  .contents-header {
-    margin-bottom: 8px;
-    flex-wrap: wrap;
-    gap: 4px;
-  }
-  .contents-title {
-    font-size: 1em;
-  }
-  .summary-inline {
-    font-size: 0.8em;
-  }
-  .modal {
-    padding: 15px;
-  }
-  .modal h3 {
-    font-size: 1.1em;
-  }
-  .actions-col {
-    width: 40px;
-  }
-  .delete-btn {
-    font-size: 1em;
-    padding: 2px 4px;
-  }
-  .no-files {
-    padding: 20px;
     font-size: 0.9em;
   }
 }

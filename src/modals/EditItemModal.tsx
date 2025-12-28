@@ -1,5 +1,5 @@
 import React from "react";
-import { Modal } from "../components/Modal";
+import { Modal } from "../components/Modal/Modal";
 import type { FileItem } from "@/queries/types";
 import { useMoveItemMutation } from "@/queries/moveItem.query";
 import { useFilesList } from "@/queries/filesList.query";
@@ -69,11 +69,11 @@ export const EditItemModal: React.FC<{
   return (
     <Modal open={open} onClose={onClose} title="✏️ Edit">
       <div className="folder-form">
-        <label htmlFor="path-input" className="file-info">
+        <label htmlFor="path-input" className="input-label">
           Path
         </label>
         <select
-          className="folder-input"
+          className="text-input"
           ref={pathInputRef}
           defaultValue={currentPath}
         >
@@ -84,7 +84,7 @@ export const EditItemModal: React.FC<{
           ))}
         </select>
 
-        <label htmlFor="name-input" className="file-info">
+        <label htmlFor="name-input" className="input-label">
           Name
         </label>
         <input
@@ -92,7 +92,7 @@ export const EditItemModal: React.FC<{
           defaultValue={file.name}
           autoFocus
           type="text"
-          className="folder-input"
+          className="text-input"
           placeholder="Name"
         />
         <button className="folder-btn" onClick={editItem}>

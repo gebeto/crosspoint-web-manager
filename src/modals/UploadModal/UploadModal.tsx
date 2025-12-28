@@ -1,7 +1,9 @@
 import React from "react";
+import "./UploadModal.css";
 import { useQueryClient } from "@tanstack/react-query";
-import { Modal } from "../components/Modal";
-import { API_URL } from "../queries/types";
+import { Modal } from "@/components/Modal/Modal";
+import { API_URL } from "@/queries/types";
+import { ProgressBar } from "@/components/ProgressBar/ProgressBar";
 
 export const UploadModal: React.FC<{
   open: boolean;
@@ -86,8 +88,9 @@ export const UploadModal: React.FC<{
   return (
     <Modal open={open} onClose={onClose} title="📤 Upload file">
       <div className="upload-form">
-        <p className="file-info">
-          Select a file to upload to <strong id="uploadPathDisplay"></strong>
+        <p className="input-label">
+          Select a file to upload to{" "}
+          <strong id="uploadPathDisplay">{currentPath}</strong>
         </p>
         <input
           ref={fileInputRef}
@@ -103,35 +106,21 @@ export const UploadModal: React.FC<{
         >
           Upload
         </button>
-        <div
-          id="progress-container"
-          style={{ display: uploadStatus === "initial" ? undefined : "block" }}
-        >
-          <div id="progress-bar">
-            <div
-              id="progress-fill"
-              style={{
-                width: progress + "%",
-                backgroundColor:
-                  {
-                    error: "#e74c3c",
-                    initial: undefined,
-                    uploading: undefined,
-                    completed: undefined,
-                  }[uploadStatus] || undefined,
-              }}
-            />
-          </div>
-          {uploadStatus === "uploading" && (
-            <div id="progress-text">Uploading: {progress}%</div>
-          )}
-          {uploadStatus === "completed" && (
-            <div id="progress-text">Upload complete!</div>
-          )}
-          {uploadStatus === "error" && (
-            <div id="progress-text">{uploadError}</div>
-          )}
-        </div>
+        {uploadStatus !== "initial" && (
+          <ProgressBar
+            progress={progress}
+            color={uploadStatus === "error" ? "error" : "success"}
+          >
+            {
+              {
+                initial: undefined,
+                uploading: `Uploading: ${progress}%`,
+                completed: "Upload complete!",
+                error: uploadError,
+              }[uploadStatus]
+            }
+          </ProgressBar>
+        )}
       </div>
     </Modal>
   );

@@ -1,4 +1,5 @@
 import React from "react";
+import "./index.css";
 import { DeleteConfirmationModal } from "@/modals/DeleteConfirmationModal";
 import { NewFolderModal } from "@/modals/NewFolderModal";
 import { UploadModal } from "@/modals/UploadModal";
@@ -73,10 +74,10 @@ export const FilesPage = () => {
       )}
       {!!deleteFile && (
         <DeleteConfirmationModal
-          open={!!deleteFile}
+          open
           onClose={() => setDeleteFile(null)}
-          filePath={deleteFile ? [...path, deleteFile.name] : []}
-          itemType={deleteFile?.isDirectory ? "folder" : "file"}
+          path={path}
+          file={deleteFile}
         />
       )}
 
